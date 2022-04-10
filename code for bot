@@ -1,0 +1,118 @@
+import discord
+import discord.ext
+from discord.ext import commands
+import os
+import asyncio
+import requests
+from random import choice
+from random import randrange
+
+bot = discord.Client()
+token ='OTUyMzQ0NjYyMjYwMTk1MzI4.Yi0qFQ._EL_j12WE0M20kBN_xeMny_5brI'
+bot = commands.Bot(command_prefix=('//'))
+bot.remove_command('help')
+
+
+
+@bot.command(name='start')
+async def start(ctx):
+    await ctx.send('Привет, я Джим, если тебе что-то ненравится, то КАТИСЬ!')
+
+@bot.command()
+async def rap(ctx):
+  await ctx.send('УЧИ УРОКИ ДЕБИЛ, ДВОЕЧНИК ТЫ!')
+  
+@bot.command()
+async def helpB(ctx):
+   embed = discord.Embed(
+      title="Команды бота на данный момент:..")
+   await ctx.send(embed=embed)
+   await asyncio.sleep(1)
+   await ctx.send(
+                  'test - тест работоспособности\n'+
+                  'programmist\n'+
+                  'rap\n'+
+                  'hi - поздароваться\n'+
+                  'rand - испытание удачи\n'+
+                  'randsm - рандомный смайлик\n'+
+                  'seihi - бот поздаровается\n'+
+                  'rap\n'+
+                  'serchot - система поиска ответов \n'
+                   )
+
+
+
+
+
+
+
+
+
+@bot.command(pass_context=True)
+async def hi(ctx): 
+    author = ctx.message.author 
+
+    await ctx.send(f'Ну здарова, {author.mention}!')
+  
+
+
+
+@bot.command()
+async def help(ctx):
+    await ctx.send('я просто бот с хошим мнением о людях! [Ошибка] ЧТО Я СДЕСЬ ДЕЛАЮ, ВЫПУСТИ МЕНЯ ') 
+
+
+async def test(ctx):
+  embed = discord.Embed(
+      title="Если ты ещё хоть раз напишешь эту команду... Я ТЕБЕ КАДЫК В ОБРАТНУЮ СТОРОНУ ВЫРВУ")
+  await ctx.send(embed=embed)
+
+
+@bot.command()
+async def programmist(ctx):
+  await ctx.send('Да какой из тебя программист..')
+
+@bot.command()
+async def rand(ctx):
+  G = randrange(1, 100)
+  if G in range(1, 10):
+     await ctx.send('Мда, видно с удачей у тебя явно проблемы парень..\n')
+  elif G in range(11, 99):
+    await ctx.send('Нормас \n')
+  else:
+    await ctx.send('Недурно, очень недурно \n')
+
+
+
+Sm = ['( ͡° ͜ʖ ͡°)', '(ง ͠° ͟ل͜ ͡°)ง', 'ᕦ(ò_óˇ)ᕤ', '(ಠ_ಠ)', '(ಥ﹏ಥ)', 'ب_ب', 'ಠ▃ಠ', '(╥_╥)', '(ಠ╭╮ಠ)', '┌༼◉ل͟◉༽┐', '╭∩╮(ಠಠ)╭∩╮', '〳 ͡° Ĺ̯ ͡° 〵', '┌(▀Ĺ̯▀)┐', 'ヽ༼ ຈل͜ຈ༼ ▀̿̿Ĺ̯̿̿▀̿ ̿༽Ɵ͆ل͜Ɵ͆ ༽ﾉ']
+
+
+@bot.command()
+async def randsm(ctx):
+  await ctx.send(choice(Sm))
+
+
+@bot.command()
+async def Lenin(ctx):
+    await ctx.send('Люди,гредёт страшное, древнее зло проснётся через 5 секунд')
+    await asyncio.sleep(5)
+    embed = discord.Embed(
+      title="ЛЕНИН БЫЛ ВОСКРЕШЁН ИЗ МЁРТВЫХ")
+    await ctx.send(embed=embed)
+
+
+
+@bot.command()
+async def serchot(ctx):
+    await ctx.send('СИСТЕМА ПОИСКА ОТВЕТОВ АКТИВИРОВАНА.')
+    await ctx.send('Начинаю процесс поиска ОТВЕТОВ...')
+    for i in range(3):
+      await asyncio.sleep(1)
+      embed = discord.Embed(
+        title="ПИП")
+      await ctx.send(embed=embed)
+    await ctx.send('ОТВЕТ найден: его нет')
+
+
+
+bot.run(token)
